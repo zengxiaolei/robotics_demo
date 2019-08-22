@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Author: lei.zeng@tu-dortmund.de
+
 from turtlesim.srv import Spawn, TeleportAbsolute, TeleportAbsoluteRequest
 from turtle_actionlib.msg import ShapeAction, ShapeActionGoal
 from std_srvs.srv import Empty
