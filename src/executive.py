@@ -87,19 +87,6 @@ def main():
 
         smach.StateMachine.add('DRAW_SHAPES', sm_concurrence)
 
-        # shape_goal1 = ShapeActionGoal()
-        # shape_goal1.goal.edges = 11
-        # shape_goal1.goal.radius = 4.0
-        # smach.StateMachine.add('BIG', smach_ros.SimpleActionState(
-        #     'turtle_shape1', ShapeAction, goal=shape_goal1.goal),
-        #     transitions={'succeeded': 'SMALL'})
-
-        # shape_goal2 = ShapeActionGoal()
-        # shape_goal2.goal.edges = 6
-        # shape_goal2.goal.radius = 1.0
-        # smach.StateMachine.add('SMALL', smach_ros.SimpleActionState(
-        #     'turtle_shape2', ShapeAction, goal=shape_goal2.goal))
-
     sis = smach_ros.IntrospectionServer('smach_server', sm_root, '/SM_ROOT')
     sis.start()
     outcome = sm_root.execute()
