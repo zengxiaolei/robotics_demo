@@ -29,20 +29,37 @@ def main():
             transitions={'succeeded': 'TELEPORT2'})
         smach.StateMachine.add('TELEPORT2', smach_ros.ServiceState(
             'turtle2/teleport_absolute', TeleportAbsolute, request=TeleportAbsoluteRequest(9.0, 5.0, 0.0)),
-            transitions={'succeeded': 'BIG'})
+            transitions={'succeeded': 'DRAW_SHAPES'})
 
-        shape_goal1 = ShapeActionGoal()
-        shape_goal1.goal.edges = 11
-        shape_goal1.goal.radius = 4.0
-        smach.StateMachine.add('BIG', smach_ros.SimpleActionState(
-            'turtle_shape1', ShapeAction, goal=shape_goal1.goal),
-            transitions={'succeeded': 'SMALL'})
+        sm_concurrence = smach.Concurrence(outcomes=['succeeded', 'aborted', 'preempted'],
+                                           default_outcome='succeeded',
+                                           outcome_map={'succeeded': {'BIG': 'succeeded', 'SMALL': 'succeeded'}})
+        with sm_concurrence:
+            shape_goal1 = ShapeActionGoal()
+            shape_goal1.goal.edges = 11
+            shape_goal1.goal.radius = 4.0
+            smach.Concurrence.add('BIG', smach_ros.SimpleActionState(
+                'turtle_shape1', ShapeAction, goal=shape_goal1.goal))
 
-        shape_goal2 = ShapeActionGoal()
-        shape_goal2.goal.edges = 6
-        shape_goal2.goal.radius = 1.0
-        smach.StateMachine.add('SMALL', smach_ros.SimpleActionState(
-            'turtle_shape2', ShapeAction, goal=shape_goal2.goal))
+            shape_goal2 = ShapeActionGoal()
+            shape_goal2.goal.edges = 6
+            shape_goal2.goal.radius = 1.0
+            smach.Concurrence.add('SMALL', smach_ros.SimpleActionState(
+                'turtle_shape2', ShapeAction, goal=shape_goal2.goal))
+        smach.StateMachine.add('DRAW_SHAPES', sm_concurrence)
+
+        # shape_goal1 = ShapeActionGoal()
+        # shape_goal1.goal.edges = 11
+        # shape_goal1.goal.radius = 4.0
+        # smach.StateMachine.add('BIG', smach_ros.SimpleActionState(
+        #     'turtle_shape1', ShapeAction, goal=shape_goal1.goal),
+        #     transitions={'succeeded': 'SMALL'})
+
+        # shape_goal2 = ShapeActionGoal()
+        # shape_goal2.goal.edges = 6
+        # shape_goal2.goal.radius = 1.0
+        # smach.StateMachine.add('SMALL', smach_ros.SimpleActionState(
+        #     'turtle_shape2', ShapeAction, goal=shape_goal2.goal))
 
     sis = smach_ros.IntrospectionServer('smach_server', sm_root, '/SM_ROOT')
     sis.start()
