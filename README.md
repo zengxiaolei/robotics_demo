@@ -12,4 +12,18 @@ Reference: https://www.bilibili.com/video/av32847834/?redirectFrom=h5
 ------
 
 # Parking feasibilty checking and Autonomous adjustment
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/parking_feasibility/parking_feasibility.gif" width="600">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/parking_feasibility/demo/parking_feasibility.gif" width="600">
+
+------
+
+# K-Means clustering and 2d circle fitting
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/km_cf.gif" width="600">
+
+          pink o:                    sample points
+          grey- purple - yellow o:   clustered points
+          red △:                     clustered center
+          green --:                  fitted circle from clustered points
+          green o:                   circle center
+
+
+
