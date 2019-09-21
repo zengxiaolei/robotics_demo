@@ -31,6 +31,7 @@
 ------
 
 ## Geometry Fitting of Obstacles 
+### Simulation in Stage
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/obstacle_geometry.gif" width="600">
 
     red:                      laser data
@@ -38,6 +39,18 @@
     yellow:                   fitted straight line
     blue:                     robot footprint
     visulization:             obstacle_detector.msg in RViz
+
+
+### Real case with using  PEPPERL+FUCHS Lidar Sensor
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/r2000_detection_case.png" width="600">
+
+    black:                    laser data
+    green:                    fitted circle & line
+    samples_per_scan:         4200
+    scan_frequency:           15
+ 
+ [lidar info](https://www.pepperl-fuchs.com/global/en/classid_53.htm?view=productdetails&prodid=86557)
+
 
 ------
 
