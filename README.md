@@ -84,3 +84,10 @@
     max_vel_x:                1.0m/s
           
     play speed:               ×4
+
+------
+## Agv behavior engine 
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_agv.gif" width="850">
+
+[FlexBE](http://philserver.bplaced.net/fbe/)
+
