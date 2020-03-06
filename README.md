@@ -1,14 +1,36 @@
+
+## Velocity Smoother (1€-Filter)
+### Simulation in Stage
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/one_euro_filter/velocity_smoother/velocty_smoother.png" width="800">
+
+    move_base_vel:            original navigation velocity command without obstacle avoidance
+    cmd_vel:                  raw navigation velocity command with obstacle avoidance
+    cmd_vel_filtered:         smoothed velocity command with obstacle avoidance
+    
+------
+  
+### usecase with an industrial AGV
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/one_euro_filter/velocity_smoother/use_case.png" width="800">
+
+    move_base_vel:            original navigation velocity command without obstacle avoidance
+    cmd_vel:                  smoothed velocity command with obstacle avoidance
+   
+[1€-Filter](https://hal.inria.fr/hal-00670496/document)
+    
+
+------
+
 ## State Machine(SMACH) Usecase
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/smach_usecase/demo/ros_smach_usecase.gif" width="840">
   
  [Document in ROS Wiki](http://wiki.ros.org/smach/UseCase)
 
--------
+-------------
 
-## A*
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/a_star/demo/astar.gif" width="600">
+## Agv behavior engine 
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_agv.gif" width="850">
 
-[Video Reference in bilibili](https://www.bilibili.com/video/av32847834/?redirectFrom=h5)
+[FlexBE](http://philserver.bplaced.net/fbe/)
 
 ------
 
@@ -85,9 +107,10 @@
           
     play speed:               ×4
 
+
 ------
-## Agv behavior engine 
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_agv.gif" width="850">
 
-[FlexBE](http://philserver.bplaced.net/fbe/)
+## A*
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/a_star/demo/astar.gif" width="600">
 
+[Video Reference in bilibili](https://www.bilibili.com/video/av32847834/?redirectFrom=h5)
