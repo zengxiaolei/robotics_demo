@@ -1,3 +1,12 @@
+## VO
+### Realsense D453i mono camera + IMU
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_mono.jpg" width="800">
+[VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono)
+
+### Realsense D453i stereo cameras+IMU
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_fusion.jpg" width="800">
+[VINS-Fusion](https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_fusion.jpg)
+------------
 
 ## Velocity Smoother (1€-Filter)
 ### Simulation in Stage
