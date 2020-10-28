@@ -1,3 +1,8 @@
+## Pure Pursuit path tracking with adaptive forwards or backwards heading
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/path_tracking/pure_pursuit/demo/purepurpsuit.gif" width="600">
+[Document](https://arxiv.org/abs/1604.07446)
+-------
+
 ## VO
 ### Realsense D453i mono camera + IMU
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_mono.jpg" width="800">
