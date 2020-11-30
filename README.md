@@ -1,16 +1,21 @@
-## Pure Pursuit path tracking with adaptive forwards or backwards heading
+## Pure Pursuit Path Tracking with Adaptive Forwards or Backwards Heading
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/path_tracking/pure_pursuit/demo/purepurpsuit.gif" width="600">
+
 [Document](https://arxiv.org/abs/1604.07446)
+
+
 -------
 
+
+
 ## VO
-### Realsense D453i mono camera + IMU
+### Realsense D453i Mono Camera + IMU
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_mono.jpg" width="800">
 [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono)
 
 -------
 
-### Realsense D453i stereo cameras+IMU
+### Realsense D453i Stereo Cameras+IMU
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_fusion.jpg" width="800">
 [VINS-Fusion](https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_fusion.jpg)
 
@@ -26,14 +31,27 @@
     
 ------
   
-### usecase with an industrial AGV
+### Usecase with an Industrial AGV
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/one_euro_filter/velocity_smoother/use_case.png" width="800">
 
     move_base_vel:            original navigation velocity command without obstacle avoidance
     cmd_vel:                  smoothed velocity command with obstacle avoidance
    
 [1€-Filter](https://hal.inria.fr/hal-00670496/document)
-    
+  
+-------------
+
+## Agv Behavior Engine 
+### Behavior Creation 
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_edit.gif" width="800">
+
+### Behavior Execution
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_exe.gif" width="800">
+
+### Agv Simulation
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_agv.gif" width="800">
+
+[FlexBE](http://philserver.bplaced.net/fbe/)  
 
 ------
 
@@ -42,12 +60,6 @@
   
  [Document in ROS Wiki](http://wiki.ros.org/smach/UseCase)
 
--------------
-
-## Agv behavior engine 
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_agv.gif" width="850">
-
-[FlexBE](http://philserver.bplaced.net/fbe/)
 
 ------
 
@@ -80,7 +92,7 @@
     visulization:             obstacle_detector.msg in RViz
 
 
-### Real case with using  PEPPERL+FUCHS Lidar Sensor
+### Real Case with PEPPERL+FUCHS Lidar Sensor
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/r2000_detection_case.png" width="600">
 
     black:                    laser data
