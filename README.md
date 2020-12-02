@@ -1,4 +1,4 @@
-share my robotic demos with all!
+share my robotic demos with all! Add star🌟 to this repo if you like it
 
 ----
 
@@ -160,5 +160,6 @@ share my robotic demos with all!
 
 ------
 
-https://github.com/zengxiaolei/robotics_demo/blob/master/BuyMeaCoffee.jpg
-Buy Me a Coffee by AliPay
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/BuyMeaCoffee.jpg" width="200">
+
+☕ Buy Me a Coffee by AliPay
