@@ -1,3 +1,13 @@
+
+
+## SLAM with Erased Map
+
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/localization/localization.gif" width="800">
+
+
+-------
+
+
 ## Pure Pursuit Path Tracking with Adaptive Forwards or Backwards Heading
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/path_tracking/pure_pursuit/demo/purepurpsuit.gif" width="600">
 
@@ -9,14 +19,15 @@
 
 
 ## VO
+
 ### Realsense D453i Mono Camera + IMU
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_mono.jpg" width="800">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/localization/VO/vins_mono.jpg" width="800">
 [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono)
 
 -------
 
 ### Realsense D453i Stereo Cameras+IMU
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_fusion.jpg" width="800">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/localization/VO/vins_fusion.jpg" width="800">
 [VINS-Fusion](https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_fusion.jpg)
 
 ------------
@@ -49,7 +60,7 @@
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_exe.gif" width="800">
 
 ### Agv Simulation
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_agv.gif" width="800">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/flexbe_usecase/demo/flexbe_agv.gif" width="600">
 
 [FlexBE](http://philserver.bplaced.net/fbe/)  
 
@@ -64,12 +75,12 @@
 ------
 
 ## Parking Feasibilty Checking and Autonomous Adjustment
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/parking_feasibility/demo/parking_feasibility.gif" width="500">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/parking_feasibility/demo/parking_feasibility.gif" width="300">
 
 ------
 
 ## K-Means Clustering and 2D Circle Fitting
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/km_cf.gif" width="600">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/km_cf.gif" width="400">
 
     pink o:                    sample points
     grey- purple - yellow o:   clustered points
@@ -83,7 +94,7 @@
 
 ## Geometry Fitting of Obstacles 
 ### Simulation in Stage
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/obstacle_geometry.gif" width="600">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/obstacle_geometry.gif" width="500">
 
     red:                      laser data
     green:                    fitted circle
@@ -93,7 +104,7 @@
 
 
 ### Real Case with PEPPERL+FUCHS Lidar Sensor
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/r2000_detection_case.png" width="600">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/r2000_detection_case.png" width="500">
 
     black:                    laser data
     green:                    fitted circle & line
@@ -106,7 +117,7 @@
 ------
 
 ## Robots Junction Behavior
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/multi_robots/demo/junction_traffic.gif" width="600">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/multi_robots/demo/junction_traffic.gif" width="400">
 
     No need to share information between robots
     Robots move independently of each other
@@ -140,6 +151,6 @@
 ------
 
 ## A*
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/a_star/demo/astar.gif" width="600">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/a_star/demo/astar.gif" width="400">
 
 [Video Reference in bilibili](https://www.bilibili.com/video/av32847834/?redirectFrom=h5)
