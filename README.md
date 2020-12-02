@@ -1,4 +1,6 @@
+share my robotic demos with all!
 
+----
 
 ## SLAM with Erased Map
 
@@ -154,3 +156,9 @@
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/a_star/demo/astar.gif" width="400">
 
 [Video Reference in bilibili](https://www.bilibili.com/video/av32847834/?redirectFrom=h5)
+
+
+------
+
+https://github.com/zengxiaolei/robotics_demo/blob/master/BuyMeaCoffee.jpg
+Buy Me a Coffee by AliPay
