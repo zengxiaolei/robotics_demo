@@ -89,6 +89,11 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 
 ------
 
+## Rotate Parking for Pose Adjustment
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/parking_feasibility/demo/rotate_park.gif" width="300">
+
+------
+
 ## K-Means Clustering and 2D Circle Fitting
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/clustering_and_fitting/demo/km_cf.gif" width="400">
 
