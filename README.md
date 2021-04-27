@@ -2,6 +2,14 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 
 ----
 
+## Localization Recovery by Apriltag
+
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/localization/localization_recovery.gif" width="800">
+
+-------
+
+
+
 ## SLAM with Erased Map
 
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/localization/localization.gif" width="800">
