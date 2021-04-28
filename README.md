@@ -38,9 +38,15 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 
 ### Realsense D453i Stereo Cameras+IMU
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/localization/VO/vins_fusion.jpg" width="800">
-[VINS-Fusion](https://github.com/zengxiaolei/robotics_demo/blob/master/VO/vins_fusion.jpg)
+[VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion)
 
 ------------
+
+### ORBSLAM2 with Realsense D455 
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/localization/VO/orbslam2-d455.gif" width="800">
+[ORBSLAM2](https://github.com/raulmur/ORB_SLAM2)
+
+-----------
 
 ## Velocity Smoother (1€-Filter)
 ### Simulation in Stage
