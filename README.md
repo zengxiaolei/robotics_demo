@@ -50,7 +50,7 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 
 ## Velocity Smoother (1€-Filter)
 ### Simulation in Stage
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/one_euro_filter/velocity_smoother/velocty_smoother.png" width="800">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/one_euro_filter/velocity_smoother/velocty_smoother.png" width="500">
 
     move_base_vel:            original navigation velocity command without obstacle avoidance
     cmd_vel:                  raw navigation velocity command with obstacle avoidance
@@ -59,7 +59,7 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 ------
   
 ### Usecase with an Industrial AGV
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/one_euro_filter/velocity_smoother/use_case.png" width="800">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/one_euro_filter/velocity_smoother/use_case.png" width="500">
 
     move_base_vel:            original navigation velocity command without obstacle avoidance
     cmd_vel:                  smoothed velocity command with obstacle avoidance
@@ -136,8 +136,8 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 
 
 ------
-
-## Robots Junction Behavior
+## Multi Robots
+### Robots Junction Behavior
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/multi_robots/demo/junction_traffic.gif" width="400">
 
     No need to share information between robots
@@ -153,7 +153,7 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
     
 ------    
 
-## Scheduling and Routing for Multi Robots
+### Scheduling and Routing for Multi Robots
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/multi_robots/demo/multi_robots.gif" width="850">
 
     Scheduling:                Manhattan distance
@@ -170,6 +170,14 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 
 
 ------
+
+
+### Area Lock Manager
+
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/multi_robots/demo/area_lock.gif" width="850">
+
+
+--------
 
 ## A*
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/a_star/demo/astar.gif" width="400">
