@@ -1,7 +1,7 @@
 share my robotic demos with all! Add star🌟 to this repo if you like it
 ----
 
-## Pallet Detection by Ralsense D435
+## Pallet Detection by Realsense D435
 ### Detection Demo
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/pcl/pallet_detect/pallet-detect-d435.gif" width="800">
 
