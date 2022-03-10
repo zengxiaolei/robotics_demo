@@ -1,8 +1,10 @@
 share my robotic demos with all! Add star🌟 to this repo if you like it
 ----
 ## obstacle Detour
-The vehicle will wait for some time and then actively detour, if the obstacle does not leave within some time.
+
 <img src="https://github.com/zengxiaolei/robotics_demo/blob/master/path_tracking/navigate/obstacle_bypass.gif" width="400">
+
+The vehicle will wait for some time and then actively detour, if the obstacle does not leave within some time.
 
 [Document](http://wiki.ros.org/teb_local_planner)
 
