@@ -2,7 +2,7 @@ share my robotic demos with all! Add star🌟 to this repo if you like it
 ----
 ## Anti-Cogging
 
-<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/drive/demo/anti-cogging.gif" width="400">
+<img src="https://github.com/zengxiaolei/robotics_demo/blob/master/drive/anti_cogging/anti-cogging.gif" width="400">
 Anti-Cogging demo in ros2
 
 [odrive_ros2_control](https://github.com/Factor-Robotics/odrive_ros2_control), 
