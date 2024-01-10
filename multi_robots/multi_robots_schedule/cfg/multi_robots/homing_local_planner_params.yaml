@@ -1,0 +1,31 @@
+HomingLocalPlanner:
+  odom_topic: odom
+
+  # Trajectory
+
+  max_global_plan_lookahead_dist: 3.0
+  global_plan_viapoint_sep: 0.4
+  global_plan_prune_distance: 1.0
+  global_plan_goal_sep: 1.0
+
+  # Robot
+
+  max_vel_x: 0.3
+  max_vel_x_backwards: 0.2
+  max_vel_theta: 0.8
+  acc_lim_x: 0.2
+  acc_lim_theta: 0.5
+  turn_around_priority: True
+  stop_dist: 0.5
+  dec_dist: 1.0
+
+  # GoalTolerance
+
+  xy_goal_tolerance: 0.1
+  yaw_goal_tolerance: 0.1
+
+  # Optimization
+
+  k_rho: 1.0
+  k_alpha: -3.0
+  k_phi: -1.0

@@ -1,0 +1,486 @@
+<launch>
+	<arg name="follow_traffic_rules" default="True" />
+	<arg name="junction_file_path"
+		default="$(find multi_robots_schedule)/cfg/traffic_junctions.yaml" />
+
+	<arg name="social_enabled" default="true" />
+	<arg name="controller_frequency" default="10" />
+
+	<!--  ************** Global Parameters ***************  -->
+	<param name="/use_sim_time" value="true" />
+
+	<!--  ************** Stage Simulator *****************  -->
+	<node pkg="stage_ros" type="stageros" name="stageros"
+		args="$(find multi_robots_schedule)/stage/social_layer.world">
+		<remap from="/robot_0/base_scan" to="/robot_0/scan" />
+		<remap from="/robot_1/base_scan" to="/robot_1/scan" />
+		<remap from="/robot_2/base_scan" to="/robot_2/scan" />
+		<remap from="/robot_3/base_scan" to="/robot_3/scan" />
+		<remap from="/robot_4/base_scan" to="/robot_4/scan" />
+		<remap from="/robot_5/base_scan" to="/robot_5/scan" />
+		<remap from="/robot_6/base_scan" to="/robot_6/scan" />
+	</node>
+
+	<!--  ******************* Maps ***********************  -->
+	<node name="map_server" pkg="map_server" type="map_server"
+		args="$(find multi_robots_schedule)/maps/map_bee.yaml" output="screen">
+		<param name="frame_id" value="map" />
+	</node>
+
+
+	<node name="map_edit_server" pkg="map_server" type="map_server"
+		args="$(find multi_robots_schedule)/maps/map_bee_edit.yaml" output="screen">
+		<!--<param
+		name="frame_id" value="/map"/>-->
+		<remap from="/map" to="/map_edit" />
+	</node>
+
+	<!--  ************** Navigation ROBOT 0 *************  -->
+	<group ns="robot_0">
+		<param name="tf_prefix" value="robot_0" />
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="global_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_converter_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="local_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/local_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/global_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/homing_local_planner_params.yaml"
+				command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="0.5" />
+			<param name="planner_patience" value="5.0" />
+
+			<param name="base_local_planner" value="homing_local_planner/HomingLocalPlanner" />
+			<param name="controller_frequency" value="$(arg controller_frequency)" />
+			<param name="controller_patience" value="15.0" />
+
+			<param name="clearing_rotation_allowed" value="False" />
+
+			<remap from="map" to="/map" />
+			<remap from="/people" to="/robot_0/people" />
+			<remap from="cmd_vel" to="move_base_vel" />
+
+			<param name="global_costmap/robot_base_frame" value="robot_0/base_link" />
+			<param name="local_costmap/robot_base_frame" value="robot_0/base_link" />
+
+		</node>
+
+
+		<node pkg="tf" type="static_transform_publisher" name="perfect_loc_robot"
+			args="0 0 0 0 0 0 map robot_0/odom 100" />
+
+		<node pkg="robot_pose_publisher" name="robot_pose_publisher" type="robot_pose_publisher">
+			<param name="map_frame" value="map" />
+			<param name="base_frame" value="robot_0/base_footprint" />
+			<param name="publish_frequency" value="1" />
+		</node>
+
+
+		<node name="velocity_control" pkg="multi_robots_schedule" type="velocity_control.py"
+			output="screen">
+			<param name="junction_yaml_path" value="$(arg junction_file_path)" />
+			<param name="show_cautious_zone" value="$(arg follow_traffic_rules)" />
+			<param name="follow_traffic_rules" value="$(arg follow_traffic_rules)" />
+		</node>
+
+	</group>
+
+
+	<group ns="robot_1">
+		<param name="tf_prefix" value="robot_1" />
+
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="global_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_converter_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="local_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/local_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/global_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/homing_local_planner_params.yaml"
+				command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="0.5" />
+			<param name="planner_patience" value="5.0" />
+
+			<param name="base_local_planner" value="homing_local_planner/HomingLocalPlanner" />
+			<param name="controller_frequency" value="$(arg controller_frequency)" />
+			<param name="controller_patience" value="15.0" />
+
+			<param name="clearing_rotation_allowed" value="False" />
+
+			<remap from="map" to="/map" />
+			<remap from="/people" to="/robot_1/people" />
+			<remap from="cmd_vel" to="move_base_vel" />
+			<param name="global_costmap/robot_base_frame" value="robot_1/base_link" />
+			<param name="local_costmap/robot_base_frame" value="robot_1/base_link" />
+		</node>
+
+
+		<node pkg="tf" type="static_transform_publisher" name="perfect_loc_robot"
+			args="0 0 0 0 0 0 map robot_1/odom 100" />
+
+		<node pkg="robot_pose_publisher" name="robot_pose_publisher" type="robot_pose_publisher">
+			<param name="map_frame" value="map" />
+			<param name="base_frame" value="robot_1/base_footprint" />
+			<param name="publish_frequency" value="1" />
+		</node>
+
+
+		<node name="velocity_control" pkg="multi_robots_schedule" type="velocity_control.py"
+			output="screen">
+			<param name="junction_yaml_path" value="$(arg junction_file_path)" />
+			<param name="show_cautious_zone" value="$(arg follow_traffic_rules)" />
+			<param name="follow_traffic_rules" value="$(arg follow_traffic_rules)" />
+		</node>
+
+	</group>
+
+
+	<group ns="robot_2">
+		<param name="tf_prefix" value="robot_2" />
+
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="global_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_converter_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="local_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/local_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/global_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/homing_local_planner_params.yaml"
+				command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="0.5" />
+			<param name="planner_patience" value="5.0" />
+
+			<param name="base_local_planner" value="homing_local_planner/HomingLocalPlanner" />
+			<param name="controller_frequency" value="$(arg controller_frequency)" />
+			<param name="controller_patience" value="15.0" />
+
+			<param name="clearing_rotation_allowed" value="False" />
+
+			<remap from="map" to="/map" />
+			<remap from="/people" to="/robot_2/people" />
+			<remap from="cmd_vel" to="move_base_vel" />
+			<param name="global_costmap/robot_base_frame" value="robot_2/base_link" />
+			<param name="local_costmap/robot_base_frame" value="robot_2/base_link" />
+		</node>
+
+
+		<node pkg="tf" type="static_transform_publisher" name="perfect_loc_robot"
+			args="0 0 0 0 0 0 map robot_2/odom 100" />
+
+		<node pkg="robot_pose_publisher" name="robot_pose_publisher" type="robot_pose_publisher">
+			<param name="map_frame" value="map" />
+			<param name="base_frame" value="robot_2/base_footprint" />
+			<param name="publish_frequency" value="1" />
+		</node>
+
+
+		<node name="velocity_control" pkg="multi_robots_schedule" type="velocity_control.py"
+			output="screen">
+			<param name="junction_yaml_path" value="$(arg junction_file_path)" />
+			<param name="show_cautious_zone" value="$(arg follow_traffic_rules)" />
+			<param name="follow_traffic_rules" value="$(arg follow_traffic_rules)" />
+		</node>
+
+	</group>
+
+
+	<group ns="robot_3">
+		<param name="tf_prefix" value="robot_3" />
+
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="global_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_converter_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="local_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/local_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/global_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/homing_local_planner_params.yaml"
+				command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="0.5" />
+			<param name="planner_patience" value="5.0" />
+
+			<param name="base_local_planner" value="homing_local_planner/HomingLocalPlanner" />
+			<param name="controller_frequency" value="$(arg controller_frequency)" />
+			<param name="controller_patience" value="15.0" />
+
+			<param name="clearing_rotation_allowed" value="False" />
+
+			<remap from="map" to="/map" />
+			<remap from="/people" to="/robot_3/people" />
+			<remap from="cmd_vel" to="move_base_vel" />
+			<param name="global_costmap/robot_base_frame" value="robot_3/base_link" />
+			<param name="local_costmap/robot_base_frame" value="robot_3/base_link" />
+		</node>
+
+
+		<node pkg="tf" type="static_transform_publisher" name="perfect_loc_robot"
+			args="0 0 0 0 0 0 map robot_3/odom 100" />
+
+		<node pkg="robot_pose_publisher" name="robot_pose_publisher" type="robot_pose_publisher">
+			<param name="map_frame" value="map" />
+			<param name="base_frame" value="robot_3/base_footprint" />
+			<param name="publish_frequency" value="1" />
+		</node>
+
+
+		<node name="velocity_control" pkg="multi_robots_schedule" type="velocity_control.py"
+			output="screen">
+			<param name="junction_yaml_path" value="$(arg junction_file_path)" />
+			<param name="show_cautious_zone" value="$(arg follow_traffic_rules)" />
+			<param name="follow_traffic_rules" value="$(arg follow_traffic_rules)" />
+		</node>
+
+	</group>
+
+
+	<group ns="robot_4">
+		<param name="tf_prefix" value="robot_4" />
+
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="global_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_converter_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="local_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/local_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/global_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/homing_local_planner_params.yaml"
+				command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="0.5" />
+			<param name="planner_patience" value="5.0" />
+
+			<param name="base_local_planner" value="homing_local_planner/HomingLocalPlanner" />
+			<param name="controller_frequency" value="$(arg controller_frequency)" />
+			<param name="controller_patience" value="15.0" />
+
+			<param name="clearing_rotation_allowed" value="False" />
+
+			<remap from="map" to="/map" />
+			<remap from="/people" to="/robot_4/people" />
+			<remap from="cmd_vel" to="move_base_vel" />
+			<param name="global_costmap/robot_base_frame" value="robot_4/base_link" />
+			<param name="local_costmap/robot_base_frame" value="robot_4/base_link" />
+		</node>
+
+
+		<node pkg="tf" type="static_transform_publisher" name="perfect_loc_robot"
+			args="0 0 0 0 0 0 map robot_4/odom 100" />
+
+		<node pkg="robot_pose_publisher" name="robot_pose_publisher" type="robot_pose_publisher">
+			<param name="map_frame" value="map" />
+			<param name="base_frame" value="robot_4/base_footprint" />
+			<param name="publish_frequency" value="1" />
+		</node>
+
+
+		<node name="velocity_control" pkg="multi_robots_schedule" type="velocity_control.py"
+			output="screen">
+			<param name="junction_yaml_path" value="$(arg junction_file_path)" />
+			<param name="show_cautious_zone" value="$(arg follow_traffic_rules)" />
+			<param name="follow_traffic_rules" value="$(arg follow_traffic_rules)" />
+		</node>
+
+	</group>
+
+
+	<group ns="robot_5">
+		<param name="tf_prefix" value="robot_5" />
+
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="global_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_converter_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="local_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/local_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/global_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/homing_local_planner_params.yaml"
+				command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="0.5" />
+			<param name="planner_patience" value="5.0" />
+
+			<param name="base_local_planner" value="homing_local_planner/HomingLocalPlanner" />
+			<param name="controller_frequency" value="$(arg controller_frequency)" />
+			<param name="controller_patience" value="15.0" />
+
+			<param name="clearing_rotation_allowed" value="False" />
+
+			<remap from="map" to="/map" />
+			<remap from="/people" to="/robot_5/people" />
+			<remap from="cmd_vel" to="move_base_vel" />
+			<param name="global_costmap/robot_base_frame" value="robot_5/base_link" />
+			<param name="local_costmap/robot_base_frame" value="robot_5/base_link" />
+		</node>
+
+
+		<node pkg="tf" type="static_transform_publisher" name="perfect_loc_robot"
+			args="0 0 0 0 0 0 map robot_5/odom 100" />
+
+		<node pkg="robot_pose_publisher" name="robot_pose_publisher" type="robot_pose_publisher">
+			<param name="map_frame" value="map" />
+			<param name="base_frame" value="robot_5/base_footprint" />
+			<param name="publish_frequency" value="1" />
+		</node>
+
+
+		<node name="velocity_control" pkg="multi_robots_schedule" type="velocity_control.py"
+			output="screen">
+			<param name="junction_yaml_path" value="$(arg junction_file_path)" />
+			<param name="show_cautious_zone" value="$(arg follow_traffic_rules)" />
+			<param name="follow_traffic_rules" value="$(arg follow_traffic_rules)" />
+		</node>
+
+	</group>
+
+	<group ns="robot_6">
+		<param name="tf_prefix" value="robot_6" />
+
+		<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="global_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_converter_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/costmap_common_params.yaml"
+				command="load" ns="local_costmap" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/local_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/global_costmap_params.yaml"
+				command="load" />
+			<rosparam
+				file="$(find multi_robots_schedule)/cfg/multi_robots/homing_local_planner_params.yaml"
+				command="load" />
+
+			<param name="base_global_planner" value="global_planner/GlobalPlanner" />
+			<param name="planner_frequency" value="0.5" />
+			<param name="planner_patience" value="5.0" />
+
+			<param name="base_local_planner" value="homing_local_planner/HomingLocalPlanner" />
+			<param name="controller_frequency" value="$(arg controller_frequency)" />
+			<param name="controller_patience" value="15.0" />
+
+			<param name="clearing_rotation_allowed" value="False" />
+
+			<remap from="map" to="/map" />
+			<remap from="/people" to="/robot_6/people" />
+			<remap from="cmd_vel" to="move_base_vel" />
+			<param name="global_costmap/robot_base_frame" value="robot_6/base_link" />
+			<param name="local_costmap/robot_base_frame" value="robot_6/base_link" />
+		</node>
+
+
+		<node pkg="tf" type="static_transform_publisher" name="perfect_loc_robot"
+			args="0 0 0 0 0 0 map robot_6/odom 100" />
+
+		<node pkg="robot_pose_publisher" name="robot_pose_publisher" type="robot_pose_publisher">
+			<param name="map_frame" value="map" />
+			<param name="base_frame" value="robot_6/base_footprint" />
+			<param name="publish_frequency" value="1" />
+		</node>
+
+
+		<node name="velocity_control" pkg="multi_robots_schedule" type="velocity_control.py"
+			output="screen">
+			<param name="junction_yaml_path" value="$(arg junction_file_path)" />
+			<param name="show_cautious_zone" value="$(arg follow_traffic_rules)" />
+			<param name="follow_traffic_rules" value="$(arg follow_traffic_rules)" />
+		</node>
+
+	</group>
+
+
+	<!--  **************** Visualisation ****************  -->
+	<node name="rviz" pkg="rviz" type="rviz"
+		args="-d $(find multi_robots_schedule)/cfg/rviz_multi_robots.rviz" />
+
+	<node if="$(arg social_enabled)" name="robots_social" pkg="multi_robots_schedule"
+		type="multi_robots_social_node.py" output="screen">
+		<param name="robots_num" value="7" />
+		<param name="lookahead_path_distance" value="10" />
+
+		<param name="path_inflation_front" value="0.8" />
+		<param name="path_distance_front" value="5" />
+
+		<param name="path_inflation_middle" value="0.4" />
+		<param name="path_distance_middle" value="7" />
+
+		<param name="path_inflation_end" value="0.1" />
+		<!--<remap
+		from="/clicked_point" to="temp_top"/>-->
+	</node>
+
+</launch>

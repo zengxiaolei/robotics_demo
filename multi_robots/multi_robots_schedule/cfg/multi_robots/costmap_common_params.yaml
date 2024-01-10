@@ -1,0 +1,41 @@
+# file: costmap_common_params.yaml
+# Make sure to preserve indentation if copied (for all yaml files)
+# footprint: [ [-0.2,-0.2], [0.2,-0.2], [0.2,0.2], [-0.2,0.2] ]
+
+transform_tolerance: 0.2
+map_type: costmap
+
+always_send_full_costmap: true
+
+obstacle_layer:
+ enabled: false
+ obstacle_range: 6.0
+ raytrace_range: 6.0
+ inflation_radius: 0.2
+ track_unknown_space: true
+ combination_method: 1
+
+ observation_sources: laser_scan_sensor
+ laser_scan_sensor: {data_type: LaserScan, topic: scan_proc, marking: true, clearing: true}
+
+
+# inflation_layer:
+#   enabled:              false
+#   cost_scaling_factor:  10.0  # exponential rate at which the obstacle cost drops off (default: 10)
+#   inflation_radius:     0.1  # max. distance from an obstacle at which costs are incurred for planning paths.
+
+static_layer:
+  enabled:              true
+  map_topic:            "/map_edit"
+  # map_topic:            "/map"
+  trinary_costmap:      false
+
+social_navigation_layers:
+  enabled:              true
+  covariance:           0.0002
+  amplitude:            254
+  keep_time:            0.4
+  cutoff:               50.0
+
+# virtual_costmap_layer:
+#   enabled:              true

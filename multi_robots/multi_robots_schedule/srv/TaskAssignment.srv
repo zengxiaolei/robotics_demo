@@ -1,0 +1,3 @@
+geometry_msgs/Pose2D task_goal
+---
+int16 robot_no

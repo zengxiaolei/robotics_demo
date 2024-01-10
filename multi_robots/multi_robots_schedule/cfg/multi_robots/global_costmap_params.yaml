@@ -1,0 +1,15 @@
+global_costmap:
+  global_frame: map
+  robot_base_frame: base_link
+  update_frequency: 1
+  publish_frequency: 1
+  static_map: true
+  robot_radius: 0.2
+ 
+  transform_tolerance: 0.5
+  plugins:
+    - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+    # - {name: obstacle_layer,          type: "costmap_2d::VoxelLayer"}
+    # - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
+    - {name: social_navigation_layers,            type: "social_navigation_layers::ProxemicLayer"}
+    # - {name: virtual_costmap_layer,            type: "virtual_costmap_layer::VirtualLayer"}

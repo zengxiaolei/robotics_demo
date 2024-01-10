@@ -1,0 +1,8 @@
+image: map_bee_edit.png
+resolution: 0.050000
+# origin: [-21.139618, -34.717767, 0.0]
+origin: [-13.800000, -17.000000, 0.000000]
+occupied_thresh: 0.4 #0.37
+free_thresh: 0.05
+negate: 1
+mode: scale
